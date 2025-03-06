@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Furniture Interior Construction Contractor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --purple: #402d5c;
+            --red: #d13d4b;
+            --light-purple: #6d5a87;
+            --black: #222222;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --gray: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            color: var(--black);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+        
+        .logo-text {
+            margin-left: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--purple);
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--red);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--red);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--black);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(64, 45, 92, 0.8), rgba(64, 45, 92, 0.8)), url('/api/placeholder/1200/800') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--white);
+            transform: skewY(-3deg);
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #b42f3b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(209, 61, 75, 0.3);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--purple);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--red);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-image {
+            height: 200px;
+            background-color: var(--gray);
+            background: url('/api/placeholder/400/200') no-repeat center center/cover;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+        
+        .service-content p {
+            color: var(--black);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .service-link {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .service-link:hover {
+            text-decoration: underline;
+        }
+        
+        .service-link span {
+            margin-left: 5px;
+        }
+        
+        /* Contact Form */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-header {
+            background-color: var(--purple);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .form-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .form-body {
+            padding: 30px;
+            position: relative;
+            min-height: 350px;
+        }
+        
+        .form-step {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.3s;
+            left: 0;
+            top: 0;
+            padding: 30px;
+            visibility: hidden;
+        }
+        
+        .form-step.active {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--purple);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--light-purple);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(64, 45, 92, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn-back {
+            background-color: var(--gray);
+            color: var(--black);
+        }
+        
+        .btn-back:hover {
+            background-color: #d1d1d1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .progress-container {
+            margin: 30px 0;
+            background-color: var(--gray);
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--red);
+            transition: width 0.3s;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--red);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            color: var(--red);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light-gray);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .success-message.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--red);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .success-icon::before, .success-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--white);
+        }
+        
+        .success-icon::before {
+            width: 3px;
+            height: 25px;
+            transform: rotate(45deg) translate(8px, 10px);
+        }
+        
+        .success-icon::after {
+            width: 40px;
+            height: 3px;
+            transform: rotate(45deg) translate(-5px, 18px);
+        }
+        
+        .success-message h3 {
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+        
+        .success-message p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%;
+                background-color: var(--white);
+                z-index: 1001;
+                transform: translateX(100%);
+                transition: transform 0.3s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            nav.active {
+                transform: translateX(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1002;
+            }
+            
+            .mobile-menu-btn.active div:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            
+            .mobile-menu-btn.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active div:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .form-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="mobile-logo">
+                    <svg width="50" height="50" viewBox="0 0 800 800" fill="none">
+                        <path d="M100 200 L700 200 L700 600 L100 600 Z" stroke="#402d5c" stroke-width="20" fill="none"/>
+                        <path d="M200 300 L500 300 L500 400 L200 400 Z" stroke="#402d5c" stroke-width="10" fill="#d13d4b"/>
+                        <path d="M300 500 L600 500 L600 600 L300 600 Z" stroke="#402d5c" stroke-width="10" fill="#d13d4b"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>Krishna Furniture</h1>
+                    <p>Interior Construction Contractor</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Space with Expert Craftsmanship</h1>
+                <p>From custom furniture to complete interior renovations, we bring your vision to life with precision and style.</p>
+                <a href="#contact-form" class="btn">Get Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We provide comprehensive solutions for all your interior needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-content">
+                        <h3>Custom Furniture</h3>
+                        <p>Bespoke furniture pieces designed to fit your space perfectly and reflect your unique style.</p>
+                        <a href="#" class="service-link">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-content">
+                        <h3>Interior Design</h3>
+                        <p>Transform your space with our thoughtful and innovative interior design solutions.</p>
+                        <a href="#" class="service-link">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-content">
+                        <h3>Construction</h3>
+                        <p>Professional construction services for renovations, extensions, and new builds.</p>
+                        <a href="#" class="service-link">Learn more <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact" id="contact-form">
+        <div class="container">
+            <div class="section-title">
+                <h2>Request a Consultation</h2>
+                <p>Fill out the form below and we'll get back to you soon</p>
+            </div>
+            <div class="form-container">
+                <div class="form-header">
+                    <h3>Get in Touch</h3>
+                    <p>Let us know how we can help with your project</p>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 25%;"></div>
+                </div>
+                <div class="form-body">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" id="step1">
+                        <h3 class="step-title">Step 1: Personal Information</h3>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" class="form-control" placeholder="Enter your mobile number">
+                        </div>
+                        <div class="form-footer">
+                            <div></div>
+                            <button class="btn next-btn" data-step="2">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Contact Information -->
+                    <div class="form-step" id="step2">
+                        <h3 class="step-title">Step 2: Contact Information</h3>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" class="form-control" placeholder="Enter your address"></textarea>
+                        </div>
+                        <div class="form-footer">
+                            <button class="btn btn-back back-btn" data-step="1">Previous Step</button>
+                            <button class="btn next-btn" data-step="3">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Project Details -->
+                    <div class="form-step" id="step3">
+                        <h3 class="step-title">Step 3: Project Details</h3>
+                        <div class="form-group">
+                            <label for="project-type">Project Type</label>
+                            <select id="project-type" class="form-control">
+                                <option value="">Select project type</option>
+                                <option value="furniture">Custom Furniture</option>
+                                <option value="interior">Interior Design</option>
+                                <option value="construction">Construction</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="requirements">Project Requirements</label>
+                            <textarea id="requirements" class="form-control" placeholder="Describe your project requirements"></textarea>
+                        </div>
+                        <div class="form-footer">
+                            <button class="btn btn-back back-btn" data-step="2">Previous Step</button>
+                            <button class="btn next-btn" data-step="4">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Confirmation -->
+                    <div class="form-step" id="step4">
+                        <h3 class="step-title">Step 4: Confirm Your Information</h3>
+                        <p>Please review your information before submitting:</p>
+                        <div id="confirmation-content" class="confirmation-content">
+                            <!-- Will be filled dynamically with JavaScript -->
+                            <p><strong>Name:</strong> <span id="confirm-name"></span></p>
+                            <p><strong>Mobile:</strong> <span id="confirm-mobile"></span></p>
+                            <p><strong>Email:</strong> <span id="confirm-email"></span></p>
+                            <p><strong>Address:</strong> <span id="confirm-address"></span></p>
+                            <p><strong>Project Type:</strong> <span id="confirm-project-type"></span></p>
+                        </div>
+                        <div class="form-footer">
+                            <button class="btn btn-back back-btn" data-step="3">Previous Step</button>
+                            <button class="btn" id="submit-btn">Submit Request</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <div class="success-message" id="success-message">
+                        <div class="success-icon"></div>
+                        <h3>Thank You!</h3>
+                        <p>Your consultation request has been submitted successfully. We'll contact you soon.</p>
+                        <button class="btn" id="new-request-btn">Submit Another Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Krishna Furniture</h3>
+                    <p>Expert interior construction and custom furniture solutions for residential and commercial projects.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="#">Custom Furniture</a>
+                    <a href="#">Interior Design</a>
+                    <a href="#">Construction</a>
+                    <a href="#">Renovation</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>123 Furniture Street, Design District</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Email: info@krishnafurniture.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Pinterest</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Krishna Furniture Interior Construction Contractor. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Multi-step Form Functionality
+        const steps = document.querySelectorAll('.form-step');
+        const nextBtns = document.querySelectorAll('.next-btn');
+        const backBtns = document.querySelectorAll('.back-btn');
+        const progressBar = document.querySelector('.progress-bar');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMessage = document.getElementById('success-message');
+        const newRequestBtn = document.getElementById('new-request-btn');
+        
+        // Form fields for validation
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+        const emailInput = document.getElementById('email');
+        const addressInput = document.getElementById('address');
+        const projectTypeSelect = document.getElementById('project-type');
+        
+        // Confirmation fields
+        const confirmName = document.getElementById('confirm-name');
+        const confirmMobile = document.getElementById('confirm-mobile');
+        const confirmEmail = document.getElementById('confirm-email');
+        const confirmAddress = document.getElementById('confirm-address');
+        const confirmProjectType = document.getElementById('confirm-project-type');
+        
+        // Current step tracker
+        let currentStep = 1;
+        
+        // Update progress bar
+        const updateProgress = (step) => {
+            const percent = (step / steps.length) * 100;
+            progressBar.style.width = `${percent}%`;
+        };
+        
+        // Validate step 1
+        const validateStep1 = () => {
+            let valid = true;
+            
+            if (!nameInput.value.trim()) {
+                valid = false;
+                nameInput.style.borderColor = 'red';
+            } else {
+                nameInput.style.borderColor = '';
+            }
+            
+            if (!mobileInput.value.trim() || !/^\d{10}$/.test(mobileInput.value.trim())) {
+                valid = false;
+                mobileInput.style.borderColor = 'red';
+            } else {
+                mobileInput.style.borderColor = '';
+            }
+            
+            return valid;
+        };
+        
+        // Validate step 2
+        const validateStep2 = () => {
+            let valid = true;
+            
+            if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+                valid = false;
+                emailInput.style.borderColor = 'red';
+            } else {
+                emailInput.style.borderColor = '';
+            }
+            
+            if (!addressInput.value.trim()) {
+                valid = false;
+                addressInput.style.borderColor = 'red';
+            } else {
+                addressInput.style.borderColor = '';
+            }
+            
+            return valid;
+        };
+        
+        // Validate step 3
+        const validateStep3 = () => {
+            let valid = true;
+            
+            if (!projectTypeSelect.value) {
+                valid = false;
+                projectTypeSelect.style.borderColor = 'red';
+            } else {
+                projectTypeSelect.style.borderColor = '';
+            }
+            
+            return valid;
+        };
+        
+        // Go to next step
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const nextStep = parseInt(btn.getAttribute('data-step'));
+                
+                // Validate current step
+                let isValid = true;
+                
+                if (currentStep === 1) {
+                    isValid = validateStep1();
+                } else if (currentStep === 2) {
+                    isValid = validateStep2();
+                } else if (currentStep === 3) {
+                    isValid = validateStep3();
+                }
+                
+                if (isValid) {
+                    // If moving to confirmation step, update confirmation content
+                    if (nextStep === 4) {
+                        confirmName.textContent = nameInput.value;
+                        confirmMobile.textContent = mobileInput.value;
+                        confirmEmail.textContent = emailInput.value;
+                        confirmAddress.textContent = addressInput.value;
+                        confirmProjectType.textContent = projectTypeSelect.options[projectTypeSelect.selectedIndex].text;
+                    }
+                    
+                    // Hide current step with animation
+                    gsap.to(`#step${currentStep}`, {
+                        opacity: 0,
+                        x: -50,
+                        duration: 0.3,
+                        onComplete: () => {
+                            steps.forEach(step => step.classList.remove('active'));
+                            document.getElementById(`step${nextStep}`).classList.add('active');
